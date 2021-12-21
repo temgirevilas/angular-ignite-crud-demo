@@ -1,0 +1,65 @@
+[
+    {
+        "code": "IND",
+        "name": "India",
+        "continent": "Asia",
+        "region": "Asia",
+        "population": 13000000
+    },
+    {
+        "code": "JP",
+        "name": "Japan",
+        "continent": "Asia",
+        "region": "Japan",
+        "population": 103000
+    },
+    {
+        "code": "ML",
+        "name": "Malysia",
+        "continent": "West Asia",
+        "region": "Malysia",
+        "population": 103000
+    },
+    {
+        "code": "ABW",
+        "name": "Aruba",
+        "continent": "North America",
+        "region": "Caribbean",
+        "population": 103000
+    },
+    {
+        "code": "ABW",
+        "name": "Aruba",
+        "continent": "North America",
+        "region": "Caribbean",
+        "population": 103000
+    },
+    {
+        "code": "AFG",
+        "name": "America",
+        "continent": "Asia",
+        "region": "North America",
+        "population": 22720000
+    },
+    {
+        "code": "CND",
+        "name": "Canada",
+        "continent": "Canada",
+        "region": "North America",
+        "population": 22720000
+    },
+    {
+        "code": "AFG",
+        "name": "Afghanistan",
+        "continent": "Asia",
+        "region": "Southern and Central Asia",
+        "population": 22720000
+    },
+    {
+        "code": "AFG",
+        "name": "Afghanistan",
+        "continent": "Asia",
+        "region": "Southern and Central Asia",
+        "population": 22720000
+    }
+]
