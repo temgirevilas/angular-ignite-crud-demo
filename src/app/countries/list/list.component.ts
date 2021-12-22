@@ -16,12 +16,12 @@ export class ListComponent implements OnInit {
             .subscribe(countries => this.countries = countries);
     }
 
-    deleteCountry(id: string) {
-        const country = this.countries.find(x => x.id === id);
+    deleteCountry(code2: string) {
+        const country = this.countries.find(x => x.code2 === code2);
         if (!country) return;
         country.isDeleting = true;
-        this.countryService.delete(id)
+        this.countryService.delete(code2)
             .pipe(first())
-            .subscribe(() => this.countries = this.countries.filter(x => x.id !== id));
+            .subscribe(() => this.countries = this.countries.filter(x => x.code2 !== code2));
     }
 }

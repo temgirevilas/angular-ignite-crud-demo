@@ -1,5 +1,5 @@
-﻿<h1 *ngIf="isAddMode">Add Country</h1>
-<h1 *ngIf="!isAddMode">Edit Country</h1>
+﻿<h3 *ngIf="isAddMode">Add Country</h3>
+<h3 *ngIf="!isAddMode">Edit Country</h3>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="col-3"></div>
     <div class="col-9">
@@ -57,7 +57,20 @@
                 <div *ngIf="f.population.errors.email">Country population must be a valid population details</div>
             </div>
         </div>
-
+        <div class="form-group">
+            <label>Code2</label>
+            <select formControlName="code2" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.code.errors }">
+                <option value=""></option>
+                <option value="IN">IN</option>
+                <option value="CH">CH</option>
+                <option value="US">US</option>
+                <option value="BR">BR</option>
+            </select>
+            <div *ngIf="submitted && f.code2.errors" class="invalid-feedback">
+                <div *ngIf="f.code2.errors.required">country Code2 is required</div>
+            </div>
+        </div>
         <div class="form-group">
             <button [disabled]="loading" class="btn btn-primary">
                 <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>

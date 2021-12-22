@@ -1,15 +1,16 @@
 ﻿
 <h1>Countries</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Country</a>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add New Country</a>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th style="width: 15%">Code</th>
+            <th style="width: 10%">Code</th>
             <th style="width: 20%">Name</th>
             <th style="width: 20%">Continent</th>
             <th style="width: 20%">Region</th>
             <th style="width: 20%">Population</th>
+            <th style="width: 5%">Code2</th>
             <th style="width: 5%"> Action</th>
         </tr>
     </thead>
@@ -20,9 +21,10 @@
             <td> {{ country.continent }} </td>
             <td> {{ country.region }} </td>
             <td> {{ country.population }} </td>
+            <td> {{ country.code2 }} </td>
             <td style="white-space: nowrap">
-                <a routerLink="edit/{{country.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                <button (click)="deleteCountry(country.id)" class="btn btn-sm btn-danger btn-delete-country" [disabled]="country.isDeleting">
+                <a routerLink="edit/{{country.code2}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteCountry(country.code2)" class="btn btn-sm btn-danger btn-delete-country" [disabled]="country.isDeleting">
                     <span *ngIf="country.isDeleting" class="spinner-border spinner-border-sm"></span>
                     <span *ngIf="!country.isDeleting">Delete</span>
                 </button>

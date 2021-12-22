@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+
 // used to create fake backend
 import { fakeBackendUserProvider, fakeBackendCountryProvider } from './_helpers';
 
@@ -29,7 +30,7 @@ import { HomeComponent } from './home';
         
         // provider used to create demo backend
         fakeBackendUserProvider,
-        fakeBackendCountryProvider
+        // fakeBackendCountryProvider
     ],
     bootstrap: [AppComponent]
 })

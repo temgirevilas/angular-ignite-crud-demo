@@ -14,8 +14,10 @@ let countries: any[] = countriesJSON ? JSON.parse(countriesJSON) : [{
     name: 'India',
     region: 'Asia', 
     continent: 'Asia',
-    population: '123456'
+    population: '123456',
+    code2: 'IN'
 }];
+
 
 @Injectable()
 
@@ -49,7 +51,7 @@ export class DemoBackendCountryInterceptor implements HttpInterceptor {
         }
 
         function getCountryById() {
-            const Country = countries.find(x => x.id === idFromUrl());
+            const Country = countries.find(x => x.code2 === idFromUrl());
             return ok(basicDetails(Country));
         }
 
@@ -57,7 +59,7 @@ export class DemoBackendCountryInterceptor implements HttpInterceptor {
             const Country = body;
 
             // assign Country id and a few other properties then save
-            Country.id = newCountryId();
+            // Country.id = newCountryId();
             countries.push(Country);
             localStorage.setItem(countiesKey, JSON.stringify(countries));
 
@@ -94,8 +96,8 @@ export class DemoBackendCountryInterceptor implements HttpInterceptor {
         }
 
         function basicDetails(Country: any) {
-            const { id, code, name, region, continent, population } = Country;
-            return { id, code, name, region, continent, population };
+            const { code2, code, name, region, continent, population } = Country;
+            return { code2, code, name, region, continent, population };
         }
 
         function idFromUrl() {

@@ -1,15 +1,16 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { first } from 'rxjs/operators';
 
 import { CountryService, AlertService } from '@app/_services';
-import { MustMatch } from '@app/_helpers';
 
 @Component({ templateUrl: 'add-edit.component.html' })
+
 export class AddEditComponent implements OnInit {
     form!: FormGroup;
-    id!: string;
+    code2!: string;
     isAddMode!: boolean;
     loading = false;
     submitted = false;
@@ -23,19 +24,20 @@ export class AddEditComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.id = this.route.snapshot.params['id'];
-        this.isAddMode = !this.id;
+        this.code2 = this.route.snapshot.params['code'];
+        this.isAddMode = !this.code2;
         
         this.form = this.formBuilder.group({
+            code2: ['', Validators.required],
             code: ['', Validators.required],
             name: ['', Validators.required],
             region: ['', Validators.required],
-            continent: ['', [Validators.required]],
+            continent: ['', Validators.required],
             population: ['', Validators.required]
         });
 
         if (!this.isAddMode) {
-            this.countryService.getById(this.id)
+            this.countryService.getById(this.code2)
                 .pipe(first())
                 .subscribe(x => this.form.patchValue(x));
         }
@@ -50,7 +52,7 @@ export class AddEditComponent implements OnInit {
         // reset alerts on submit
         this.alertService.clear();
 
-        // stop here if form is invalid
+        // stop & return here if form is invalid
         if (this.form.invalid) {
             return;
         }
@@ -74,7 +76,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private updateCountry() {
-        this.countryService.update(this.id, this.form.value)
+        this.countryService.update(this.code2, this.form.value)
             .pipe(first())
             .subscribe(() => {
                 this.alertService.success('Country updated', { keepAfterRouteChange: true });
