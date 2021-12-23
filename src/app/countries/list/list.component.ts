@@ -1,4 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { first } from 'rxjs/operators';
 
 import { CountryService } from '@app/_services';
@@ -7,11 +9,17 @@ import { Countries } from '@app/_models';
 @Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
     countries!: Countries[];
+    limit!: number;
 
-    constructor(private countryService: CountryService) {}
+    constructor(
+        private countryService: CountryService,
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit() {
-        this.countryService.getAll()
+        // this.limit = this.route.snapshot.params['limit'];
+        // this.limit = this.limit ? this.limit : 11;
+        this.countryService.getAll(11)
             .pipe(first())
             .subscribe(countries => this.countries = countries);
     }
