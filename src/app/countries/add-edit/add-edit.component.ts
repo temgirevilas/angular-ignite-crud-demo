@@ -53,7 +53,7 @@ export class AddEditComponent implements OnInit {
         this.alertService.clear();
 
         // stop & return here if form is invalid
-        if (this.form.invalid) {
+        if (this.isAddMode && this.form.invalid) {
             return;
         }
 

@@ -1,4 +1,5 @@
-﻿import { Component, OnInit ,ViewChildren, QueryList, ElementRef,EventEmitter ,Output,Input, ViewChild } from '@angular/core';
+﻿import { Component, OnInit , ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { CountryService } from '@app/_services';
 import { Countries } from '@app/_models';
@@ -8,17 +9,21 @@ import { MatSort } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 @Component({ templateUrl: 'list.component.html' })
+
 export class ListComponent implements OnInit {
+
     countries!: Countries[];
     displayedColumnsView: string[] = ['code','name','continent','region','population','code2','action'];
     dataSourceView = new MatTableDataSource<any>();
     totalRecords:any;
-    constructor(private countryService: CountryService) {}
+    limit!: number;
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
 
+    constructor(private countryService: CountryService,private route: ActivatedRoute) {}
+   
     ngOnInit() {
-        this.countryService.getAll().pipe(first()).subscribe(countries =>{ 
+        this.countryService.getAll(11).pipe(first()).subscribe(countries =>{ 
             this.countries = countries;
             this.dataSourceView = new MatTableDataSource(this.countries);
             this.totalRecords = this.countries.length;
