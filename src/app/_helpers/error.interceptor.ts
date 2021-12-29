@@ -12,11 +12,11 @@ export class ErrorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const authReq = request.clone({
-            headers: request.headers
-            .set('Content-Type', 'application/json')
-            .set('Access-Control-Allow-Origin', '*')
-          });
+        // const authReq = request.clone({
+        //     headers: request.headers
+        //     .set('Content-Type', 'application/json')
+        //     .set('Access-Control-Allow-Origin', '*')
+        //   });
 
         return next.handle(request).pipe(catchError(err => {
             const error = err.error?.message || err.statusText;

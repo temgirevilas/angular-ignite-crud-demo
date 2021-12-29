@@ -12,7 +12,7 @@ let countries: any[] = countriesJSON ? JSON.parse(countriesJSON) : [{
     id: 1,
     code: 'IND',
     name: 'India',
-    region: 'Asia', 
+    region: 'Asia',
     continent: 'Asia',
     population: '123456',
     code2: 'IN'
@@ -42,7 +42,7 @@ export class DemoBackendCountryInterceptor implements HttpInterceptor {
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
-            }    
+            }
         }
 
         // route functions

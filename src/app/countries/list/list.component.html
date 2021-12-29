@@ -2,7 +2,81 @@
 <h1>Countries</h1>
 <a routerLink="add" class="btn btn-sm btn-success mb-2">Add New Country</a>
 
-<table class="table table-striped">
+<div fxLayout fxLayoutAlign="center center">Search&nbsp;&nbsp;
+    <mat-form-field fxFlex="20%" style="background: white;">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)">
+    </mat-form-field>
+</div>
+
+<mat-table #table [dataSource]="dataSourceView" matSort matSortStart="desc"class="col-md-12 col-sm-12 p0" >
+    <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header" class="flex3">
+            <span class="mat-header-text">Code</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+        <span>{{element.code}}</span>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header" class="flex3">
+            <span class="mat-header-text">Name</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+        <span>{{element.name}}</span>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="continent">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header" class="flex3">
+            <span class="mat-header-text">Continent</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+        <span>{{element.continent}}</span>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="region">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header" class="flex3">
+            <span class="mat-header-text">Region</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+        <span>{{element.region}}</span>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="population">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header" class="flex3">
+            <span class="mat-header-text">Population</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+        <span>{{element.population}}</span>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="code2">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header" class="flex3">
+            <span class="mat-header-text">Code2</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+        <span>{{element.code2}}</span>
+        </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="header" class="flex3">
+            <span class="mat-header-text">Action</span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="flex3 elips" style="font-size:14px">
+            <a routerLink="edit/{{element.code2}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+            <button (click)="deleteCountry(element.code2)" class="btn btn-sm btn-danger btn-delete-country" [disabled]="element.isDeleting">
+                <span *ngIf="element.isDeleting" class="spinner-border spinner-border-sm"></span>
+                <span *ngIf="!element.isDeleting">Delete</span>
+            </button>
+        </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumnsView"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumnsView;"></mat-row>
+</mat-table>
+
+<mat-paginator [length]="totalRecords" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+<!-- <table class="table table-striped">
     <thead>
         <tr>
             <th style="width: 10%">Code</th>
@@ -14,7 +88,7 @@
             <th style="width: 5%"> Action</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody class="page-data">
         <tr *ngFor="let country of countries">
             <td> {{ country.code }} </td>
             <td> {{ country.name }} </td>
@@ -37,3 +111,20 @@
         </tr>
     </tbody>
 </table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination" style="float: right;">
+        <li onclick="prePage()" class="page-item page-list">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+
+        <li onclick="nextPage()" class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+    </ul>
+</nav> -->
